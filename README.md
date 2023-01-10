@@ -5,8 +5,8 @@ The API for shallowflow.
 
 Install via pip:
 
-```commandline
-pip install "git+https://github.com/waikato-datamining/shallowflow.git#egg=shallowflow-api&subdirectory=api"
+```bash
+pip install "git+https://github.com/waikato-datamining/shallowflow-api.git"
 ```
 
 ## Classes
