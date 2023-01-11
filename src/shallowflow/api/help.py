@@ -63,17 +63,19 @@ def class_hierarchy_help(super_class, generator, output_dir, module_regexp=None)
     :return: the tuple of list of classes and corresponding list of generated files, relative to the output directory (contains None if failed to generate a file)
     :rtype: tuple
     """
-    result = []
-    classes = find_classes(super_class, use_cache=False, module_regexp=module_regexp)
-    for cls in classes:
-        fname = get_class_name(cls) + generator.file_extension()
-        out_file = output_dir + "/" + fname
+    classes = []
+    file_names = []
+    _classes = find_classes(super_class, use_cache=False, module_regexp=module_regexp)
+    for cls in _classes:
+        file_name = get_class_name(cls) + generator.file_extension()
+        out_file = output_dir + "/" + file_name
         try:
             # skip abstract classes (just a naming convention)
             if cls.__name__.startswith("Abstract"):
                 continue
             generator.generate(cls(), fname=out_file)
-            result.append(fname)
+            classes.append(cls)
+            file_names.append(file_name)
         except Exception:
-            result.append(None)
-    return classes, result
+            pass
+    return classes, file_names
