@@ -1,4 +1,4 @@
-from .logging import LoggableObject
+from coed.logging import LoggableObject
 from .stopping import Stoppable
 
 

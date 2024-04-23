@@ -1,4 +1,4 @@
-from .serialization.vars import AbstractStringReader, add_string_reader
+from coed.serialization.vars import AbstractStringReader, add_string_reader
 
 
 STORAGE_EVENT_ADDED = "added"

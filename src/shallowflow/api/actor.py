@@ -1,8 +1,8 @@
 import traceback
-import shallowflow.api.serialization.objects as serialization
-from .config import Option, AbstractOptionHandler, dict_to_optionhandler, optionhandler_to_dict
+import coed.serialization.objects as serialization
+from coed.config import Option, AbstractOptionHandler, dict_to_optionhandler, optionhandler_to_dict
 from .stopping import Stoppable
-from .vars import VariableChangeListener
+from coed.vars import VariableChangeListener
 from .scope import ScopeHandler
 from .storage import StorageHandler
 

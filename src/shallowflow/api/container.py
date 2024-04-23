@@ -1,4 +1,4 @@
-from shallowflow.api.config import get_class_name
+from coed.config import get_class_name
 
 
 class AbstractContainer(object):

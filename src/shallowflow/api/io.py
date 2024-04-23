@@ -3,10 +3,10 @@ import os
 import pickle
 import traceback
 import yaml
-from .config import optionhandler_to_dict, dict_to_optionhandler
-from .serialization.vars import AbstractStringReader, add_string_reader
+from coed.config import optionhandler_to_dict, dict_to_optionhandler
+from coed.serialization.vars import AbstractStringReader, add_string_reader
 from .actor import Actor, FLOW_DIR, FLOW_PATH
-from .logging import log
+from coed.logging import log
 
 FLOW_READERS = None
 """ contains all flow readers (.ext -> reader)"""

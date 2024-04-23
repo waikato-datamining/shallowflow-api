@@ -1,8 +1,8 @@
 from .actor import Actor
 from .actor_utils import find_actor_handlers
-from .config import Option
+from coed.config import Option
 from .control import MutableActorHandler, ActorHandler
-from .serialization.vars import AbstractStringReader, add_string_reader
+from coed.serialization.vars import AbstractStringReader, add_string_reader
 
 UNKNOWN = "unknown"
 

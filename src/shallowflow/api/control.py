@@ -1,5 +1,5 @@
 from .actor import Actor
-from .config import Option
+from coed.config import Option
 from .director import AbstractDirector
 
 

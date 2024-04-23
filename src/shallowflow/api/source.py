@@ -1,5 +1,5 @@
 from .actor import OutputProducer
-from .config import Option
+from coed.config import Option
 
 
 class AbstractSimpleSource(OutputProducer):

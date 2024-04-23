@@ -37,6 +37,7 @@ setup(
         "pyyaml",
         "scoping",
         "setuptools",
+        "coed",
     ],
     version="0.0.1",
     author='Peter Reutemann',

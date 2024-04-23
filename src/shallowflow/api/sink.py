@@ -1,5 +1,5 @@
 from .actor import InputConsumer
-from .config import Option
+from coed.config import Option
 from .io import File
 
 STATE_INPUT = "input"

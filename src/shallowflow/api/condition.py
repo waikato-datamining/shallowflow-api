@@ -1,6 +1,6 @@
-from .config import AbstractOptionHandler, optionhandler_to_dict, dict_to_optionhandler
+from coed.config import AbstractOptionHandler, optionhandler_to_dict, dict_to_optionhandler
 from .actor import FlowContextHandler
-from .serialization.objects import add_dict_writer, add_dict_reader
+from coed.serialization.objects import add_dict_writer, add_dict_reader
 
 
 class AbstractBooleanCondition(AbstractOptionHandler, FlowContextHandler):
