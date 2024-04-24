@@ -225,7 +225,7 @@ class AbstractCallableActor(Actor):
         :return: None if successfully executed, otherwise error message
         :rtype: str
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def _do_execute(self):
         """

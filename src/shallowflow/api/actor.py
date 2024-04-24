@@ -239,7 +239,7 @@ class Actor(AbstractOptionHandler, VariableChangeListener, Stoppable):
         :return: None if successful, otherwise error message
         :rtype: str
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def _post_execute(self):
         """
@@ -307,7 +307,7 @@ class InputConsumer(Actor):
         :return: the list of types
         :rtype: list
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def input(self, data):
         """
@@ -316,7 +316,7 @@ class InputConsumer(Actor):
         :param data: the data to consume
         :type data: object
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
 
 class OutputProducer(Actor):
@@ -331,7 +331,7 @@ class OutputProducer(Actor):
         :return: the list of types
         :rtype: list
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def output(self):
         """
@@ -340,7 +340,7 @@ class OutputProducer(Actor):
         :return: the data, None if nothing available
         :rtype: object
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def has_output(self):
         """
@@ -349,7 +349,7 @@ class OutputProducer(Actor):
         :return: true if available
         :rtype: bool
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
 
 class FlowContextHandler(object):
@@ -362,7 +362,7 @@ class FlowContextHandler(object):
         :return: the flow context, None if none set
         :rtype: Actor
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @flow_context.setter
     def flow_context(self, actor):
@@ -372,7 +372,7 @@ class FlowContextHandler(object):
         :param actor: the flow context
         :type actor: Actor
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
 
 def is_standalone(actor):

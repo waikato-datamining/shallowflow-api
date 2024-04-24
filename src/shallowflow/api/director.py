@@ -39,7 +39,7 @@ class AbstractDirector(LoggableObject, Stoppable):
         :return: None if successfully executed, otherwise error message
         :rtype: str
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def execute(self, actors):
         """

@@ -41,7 +41,7 @@ class ActorHandler(Actor):
         :return: the director
         :rtype: AbstractDirector
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @property
     def actor_handler_info(self):
@@ -51,7 +51,7 @@ class ActorHandler(Actor):
         :return: the info
         :rtype: ActorHandlerInfo
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @property
     def actors(self):

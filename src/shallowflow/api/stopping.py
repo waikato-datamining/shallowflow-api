@@ -7,7 +7,7 @@ class Stoppable(object):
         """
         Stops the actor execution.
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     @property
     def is_stopped(self):
@@ -17,4 +17,4 @@ class Stoppable(object):
         :return: true if stopped
         :rtype: bool
         """
-        raise NotImplemented()
+        raise NotImplementedError()

@@ -48,7 +48,7 @@ class AbstractContainer(object):
         :return: the list of names
         :rtype: list
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def stored(self):
         """

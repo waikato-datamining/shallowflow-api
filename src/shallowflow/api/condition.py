@@ -73,7 +73,7 @@ class AbstractBooleanCondition(AbstractOptionHandler, FlowContextHandler):
         :return: the result of the evaluation
         :rtype: bool
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def evaluate(self, o):
         """

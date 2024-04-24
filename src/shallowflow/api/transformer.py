@@ -122,7 +122,7 @@ class AbstractListOutputTransformer(AbstractSimpleTransformer):
 
         :return: the type that gets generated
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def generates(self):
         """

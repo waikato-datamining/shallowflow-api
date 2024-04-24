@@ -104,7 +104,7 @@ class StorageChangeListener(object):
         :param event: the event
         :type event: StorageChangeEvent
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
 
 class Storage(object):
@@ -285,7 +285,7 @@ class StorageHandler(object):
         :return: the storage
         :rtype: Storage
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
 
 class StorageUser(object):
@@ -301,7 +301,7 @@ class StorageUser(object):
         :return: True if used
         :rtype: bool
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
 
 # serialization

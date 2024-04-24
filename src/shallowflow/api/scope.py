@@ -14,7 +14,7 @@ class ScopeHandler(object):
         :return: True if already in use
         :rtype: bool
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def add_callable_name(self, handler, actor):
         """
@@ -27,4 +27,4 @@ class ScopeHandler(object):
         :return: None if successfully added, otherwise error message
         :rtype: str
         """
-        raise NotImplemented()
+        raise NotImplementedError()

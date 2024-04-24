@@ -84,7 +84,7 @@ class AbstractListOutputSource(AbstractSimpleSource):
 
         :return: the type that gets generated
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def generates(self):
         """
