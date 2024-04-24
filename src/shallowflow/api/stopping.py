@@ -1,4 +1,4 @@
-class Stoppable(object):
+class Stoppable:
     """
     Interface for classes that can be stopped.
     """

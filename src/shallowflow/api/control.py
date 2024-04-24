@@ -1,9 +1,10 @@
+import abc
 from .actor import Actor
 from coed.config import Option
 from .director import AbstractDirector
 
 
-class ActorHandlerInfo(object):
+class ActorHandlerInfo:
     """
     For storing meta-information about an ActorHandler.
     """
@@ -21,7 +22,7 @@ class ActorHandlerInfo(object):
         self.can_contain_source = can_contain_source
 
 
-class ActorHandler(Actor):
+class ActorHandler(Actor, abc.ABC):
     """
     Interface for actors that manage sub-actors.
     """
@@ -236,7 +237,7 @@ class ActorHandler(Actor):
         super().clean_up()
 
 
-class MutableActorHandler(ActorHandler):
+class MutableActorHandler(ActorHandler, abc.ABC):
     """
     Ancestor for actor handlers that allow appending, removing of actors.
     """

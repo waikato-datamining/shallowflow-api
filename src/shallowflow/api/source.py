@@ -1,8 +1,9 @@
-from .actor import OutputProducer
+import abc
+from .actor import Actor, OutputProducer
 from coed.config import Option
 
 
-class AbstractSimpleSource(OutputProducer):
+class AbstractSimpleSource(Actor, OutputProducer, abc.ABC):
     """
     Ancestor for simple source actors.
     """
@@ -65,7 +66,7 @@ class AbstractSimpleSource(OutputProducer):
         super().wrap_up()
 
 
-class AbstractListOutputSource(AbstractSimpleSource):
+class AbstractListOutputSource(AbstractSimpleSource, abc.ABC):
     """
     Ancestor for source actors that can output data either as list or one by one.
     """

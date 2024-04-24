@@ -1,3 +1,4 @@
+import abc
 import traceback
 import coed.serialization.objects as serialization
 from coed.config import Option, AbstractOptionHandler, dict_to_optionhandler, optionhandler_to_dict
@@ -13,7 +14,7 @@ FLOW_DIR = "flow_dir"
 """ Variable that stores the directory the flow resides in. """
 
 
-class Actor(AbstractOptionHandler, VariableChangeListener, Stoppable):
+class Actor(AbstractOptionHandler, VariableChangeListener, Stoppable, abc.ABC):
     """
     The ancestor for all actors.
     """
@@ -295,7 +296,7 @@ class Actor(AbstractOptionHandler, VariableChangeListener, Stoppable):
         return self._stopped
 
 
-class InputConsumer(Actor):
+class InputConsumer:
     """
     Interface for actors that consume input.
     """
@@ -319,7 +320,7 @@ class InputConsumer(Actor):
         raise NotImplementedError()
 
 
-class OutputProducer(Actor):
+class OutputProducer:
     """
     Interface for actors that generate output.
     """
@@ -352,7 +353,7 @@ class OutputProducer(Actor):
         raise NotImplementedError()
 
 
-class FlowContextHandler(object):
+class FlowContextHandler:
 
     @property
     def flow_context(self):

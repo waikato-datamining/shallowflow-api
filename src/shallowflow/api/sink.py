@@ -1,11 +1,12 @@
-from .actor import InputConsumer
+import abc
+from .actor import Actor, InputConsumer
 from coed.config import Option
 from .io import File
 
 STATE_INPUT = "input"
 
 
-class AbstractSimpleSink(InputConsumer):
+class AbstractSimpleSink(Actor, InputConsumer, abc.ABC):
     """
     Ancestor for simple source actors.
     """
@@ -57,7 +58,7 @@ class AbstractSimpleSink(InputConsumer):
         self._input = None
 
 
-class AbstractFileWriter(AbstractSimpleSink):
+class AbstractFileWriter(AbstractSimpleSink, abc.ABC):
     """
     Ancestor for sinks that write files to disk.
     """

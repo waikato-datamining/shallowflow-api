@@ -1,4 +1,4 @@
-class ScopeHandler(object):
+class ScopeHandler:
     """
     Interface for classes that manage scope within a flow.
     """

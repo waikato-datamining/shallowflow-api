@@ -1,8 +1,9 @@
+import abc
 from coed.logging import LoggableObject
 from .stopping import Stoppable
 
 
-class AbstractDirector(LoggableObject, Stoppable):
+class AbstractDirector(LoggableObject, Stoppable, abc.ABC):
     """
     Ancestor for directors used by control actors.
     """

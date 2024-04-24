@@ -1,4 +1,4 @@
-class Unknown(object):
+class Unknown:
     """
     Dummy class used for compatibility checks. Matches with everything.
     """

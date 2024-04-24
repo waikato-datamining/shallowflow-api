@@ -69,7 +69,7 @@ class StorageNameStringReader(AbstractStringReader):
         return StorageName(s)
 
 
-class StorageChangeEvent(object):
+class StorageChangeEvent:
     """
     Event that gets sent out if storage changes.
     """
@@ -92,7 +92,7 @@ class StorageChangeEvent(object):
         self.key = key
 
 
-class StorageChangeListener(object):
+class StorageChangeListener:
     """
     Interface for classes that listen to storage change events.
     """
@@ -107,7 +107,7 @@ class StorageChangeListener(object):
         raise NotImplementedError()
 
 
-class Storage(object):
+class Storage:
     """
     Manages the storage.
     """
@@ -272,7 +272,7 @@ class Storage(object):
         return str(self._data)
 
 
-class StorageHandler(object):
+class StorageHandler:
     """
     Interface for classes that manage storage.
     """
@@ -288,7 +288,7 @@ class StorageHandler(object):
         raise NotImplementedError()
 
 
-class StorageUser(object):
+class StorageUser:
     """
     Interface for classes that use storage.
     """

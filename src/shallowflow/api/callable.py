@@ -1,3 +1,4 @@
+import abc
 from .actor import Actor
 from .actor_utils import find_actor_handlers
 from coed.config import Option
@@ -63,7 +64,6 @@ def find_callable_actor_recursive(actor, name):
     return result
 
 
-
 class CallableActorReference(str):
     """
     For referencing actors by name.
@@ -105,7 +105,7 @@ class CallableActorReferenceStringReader(AbstractStringReader):
         return CallableActorReference(s)
 
 
-class AbstractCallableActor(Actor):
+class AbstractCallableActor(Actor, abc.ABC):
     """
     Ancestor for callable actors.
     """

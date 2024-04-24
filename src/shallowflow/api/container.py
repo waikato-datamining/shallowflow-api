@@ -1,7 +1,8 @@
+import abc
 from coed.config import get_class_name
 
 
-class AbstractContainer(object):
+class AbstractContainer(abc.ABC):
     """
     Ancestor for flow containers.
     """

@@ -1,10 +1,11 @@
-from .actor import InputConsumer, OutputProducer
+import abc
+from .actor import Actor, InputConsumer, OutputProducer
 from coed.config import Option
 
 STATE_INPUT = "input"
 
 
-class AbstractSimpleTransformer(InputConsumer, OutputProducer):
+class AbstractSimpleTransformer(Actor, InputConsumer, OutputProducer, abc.ABC):
     """
     Ancestor for simple source actors.
     """
@@ -103,7 +104,7 @@ class AbstractSimpleTransformer(InputConsumer, OutputProducer):
         super().wrap_up()
 
 
-class AbstractListOutputTransformer(AbstractSimpleTransformer):
+class AbstractListOutputTransformer(AbstractSimpleTransformer, abc.ABC):
     """
     Ancestor for transformer actors that can output data either as list or one by one.
     """
