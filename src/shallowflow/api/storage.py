@@ -1,3 +1,4 @@
+import threading
 from coed.serialization.vars import AbstractStringReader, add_string_reader
 
 
@@ -118,6 +119,7 @@ class Storage:
         """
         self._data = dict()
         self._listeners = set()
+        self._storage_mutex = threading.Semaphore(1)
 
     def add_listener(self, l):
         """
@@ -160,7 +162,9 @@ class Storage:
         :return: itself
         :rtype: Storage
         """
+        self._storage_mutex.acquire()
         self._data.clear()
+        self._storage_mutex.release()
         self._notify_listeners(StorageChangeEvent(self, STORAGE_EVENT_CLEARED))
         return self
 
@@ -175,7 +179,10 @@ class Storage:
         """
         if not is_valid_name(key):
             raise Exception("Invalid storage name: %s" + key)
-        return key in self._data
+        self._storage_mutex.acquire()
+        result = key in self._data
+        self._storage_mutex.release()
+        return result
 
     def set(self, key, value):
         """
@@ -190,12 +197,15 @@ class Storage:
         """
         if not is_valid_name(key):
             raise Exception("Invalid storage name: %s" + key)
+        self._storage_mutex.acquire()
         if key not in self._data:
             self._data[key] = value
-            self._notify_listeners(StorageChangeEvent(self, STORAGE_EVENT_ADDED, key))
+            event = STORAGE_EVENT_ADDED
         else:
             self._data[key] = value
-            self._notify_listeners(StorageChangeEvent(self, STORAGE_EVENT_UPDATED, key))
+            event = STORAGE_EVENT_UPDATED
+        self._storage_mutex.release()
+        self._notify_listeners(StorageChangeEvent(self, event, key))
         return self
 
     def get(self, key):
@@ -209,10 +219,12 @@ class Storage:
         """
         if not is_valid_name(key):
             raise Exception("Invalid storage name: %s" + key)
+        result = None
+        self._storage_mutex.acquire()
         if key in self._data:
-            return self._data[key]
-        else:
-            return None
+            result = self._data[key]
+        self._storage_mutex.release()
+        return result
 
     def remove(self, key):
         """
@@ -225,9 +237,14 @@ class Storage:
         """
         if not is_valid_name(key):
             raise Exception("Invalid storage name: %s" + key)
+        event = None
+        self._storage_mutex.acquire()
         if key in self._data:
             del self._data[key]
-            self._notify_listeners(StorageChangeEvent(self, STORAGE_EVENT_DELETED, key))
+            event = STORAGE_EVENT_DELETED
+        self._storage_mutex.release()
+        if event is not None:
+            self._notify_listeners(StorageChangeEvent(self, event, key))
         return self
 
     def keys(self):
@@ -237,7 +254,10 @@ class Storage:
         :return: the set of names
         :rtype: set
         """
-        return self._data.keys()
+        self._storage_mutex.acquire()
+        result = set(self._data.keys())
+        self._storage_mutex.release()
+        return result
 
     def merge(self, storage):
         """
@@ -248,8 +268,10 @@ class Storage:
         :return: itself
         :rtype: Storage
         """
+        self._storage_mutex.acquire()
         for key in storage.keys():
             self.set(key, storage.get(key))
+        self._storage_mutex.release()
         return self
 
     def _notify_listeners(self, event):
