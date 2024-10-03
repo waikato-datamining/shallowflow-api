@@ -3,6 +3,7 @@ import os
 import pickle
 import traceback
 import yaml
+from typing import Any, Dict, List, Optional
 from coed.config import optionhandler_to_dict, dict_to_optionhandler
 from coed.serialization.vars import AbstractStringReader, add_string_reader
 from .actor import Actor, FLOW_DIR, FLOW_PATH
@@ -44,7 +45,7 @@ class FileStringReader(AbstractStringReader):
         """
         return issubclass(cls, File)
 
-    def convert(self, s, base_type=None):
+    def convert(self, s: str, base_type=None) -> 'File':
         """
         Turns the string into an object.
 
@@ -71,7 +72,7 @@ class DirectoryStringReader(AbstractStringReader):
         """
         return issubclass(cls, Directory)
 
-    def convert(self, s, base_type=None):
+    def convert(self, s: str, base_type=None) -> 'Directory':
         """
         Turns the string into an object.
 
@@ -83,7 +84,7 @@ class DirectoryStringReader(AbstractStringReader):
         return Directory(s)
 
 
-def fix_extension(ext):
+def fix_extension(ext: str) -> str:
     """
     Ensures that the extension starts with a dot.
 
@@ -98,7 +99,7 @@ def fix_extension(ext):
         return ext
 
 
-def get_flow_readers():
+def get_flow_readers() -> Dict:
     """
     Returns the registered readers.
 
@@ -111,7 +112,7 @@ def get_flow_readers():
     return FLOW_READERS
 
 
-def get_reader_extensions():
+def get_reader_extensions() -> List:
     """
     Returns a list of extensions for which readers are available.
 
@@ -123,7 +124,7 @@ def get_reader_extensions():
     return result
 
 
-def add_flow_reader(ext, reader):
+def add_flow_reader(ext: str, reader):
     """
     Adds a reader for the specified extension.
 
@@ -135,7 +136,7 @@ def add_flow_reader(ext, reader):
     get_flow_readers()[fix_extension(ext)] = reader
 
 
-def has_flow_reader(ext):
+def has_flow_reader(ext) -> bool:
     """
     Checks whether a reader is registered for the extension.
 
@@ -147,7 +148,7 @@ def has_flow_reader(ext):
     return fix_extension(ext) in get_flow_readers()
 
 
-def get_flow_reader(ext):
+def get_flow_reader(ext) -> Any:
     """
     Returns the reader registered for the extension.
 
@@ -162,7 +163,7 @@ def get_flow_reader(ext):
         return None
 
 
-def get_flow_writers():
+def get_flow_writers() -> Dict:
     """
     Returns the registered writers.
 
@@ -175,7 +176,7 @@ def get_flow_writers():
     return FLOW_WRITERS
 
 
-def get_writer_extensions():
+def get_writer_extensions() -> List:
     """
     Returns a list of extensions for which writers are available.
 
@@ -187,7 +188,7 @@ def get_writer_extensions():
     return result
 
 
-def add_flow_writer(ext, writer):
+def add_flow_writer(ext: str, writer):
     """
     Adds a writer for the specified extension.
 
@@ -199,7 +200,7 @@ def add_flow_writer(ext, writer):
     get_flow_writers()[fix_extension(ext)] = writer
 
 
-def has_flow_writer(ext):
+def has_flow_writer(ext) -> bool:
     """
     Checks whether a writer is registered for the extension.
 
@@ -211,7 +212,7 @@ def has_flow_writer(ext):
     return fix_extension(ext) in get_flow_writers()
 
 
-def get_flow_writer(ext):
+def get_flow_writer(ext) -> Any:
     """
     Returns the writer registered for the extension.
 
@@ -226,7 +227,7 @@ def get_flow_writer(ext):
         return None
 
 
-def add_flow_vars(actor, path):
+def add_flow_vars(actor: Actor, path: str) -> Optional[Actor]:
     """
     Adds variables derived from the path to the actor's variables.
 
@@ -247,7 +248,7 @@ def add_flow_vars(actor, path):
     return actor
 
 
-def load_json_actor(path):
+def load_json_actor(path: str) -> Optional[Actor]:
     """
     Loads a actor from the given JSON file.
 
@@ -265,7 +266,7 @@ def load_json_actor(path):
         return None
 
 
-def load_yaml_actor(path):
+def load_yaml_actor(path: str) -> Optional[Actor]:
     """
     Loads a actor from the given YAML file.
 
@@ -283,7 +284,7 @@ def load_yaml_actor(path):
         return None
 
 
-def load_pickle_actor(path):
+def load_pickle_actor(path: str) -> Optional[Actor]:
     """
     Loads a actor from the given pickle file.
 
@@ -302,7 +303,7 @@ def load_pickle_actor(path):
         return None
 
 
-def load_actor(path):
+def load_actor(path: str) -> Optional[Actor]:
     """
     Loads a actor from the given file.
 
@@ -319,7 +320,7 @@ def load_actor(path):
         return None
 
 
-def save_json_actor(actor, path):
+def save_json_actor(actor: Actor, path: str) -> Optional[str]:
     """
     Saves the actor to the given JSON file.
 
@@ -339,7 +340,7 @@ def save_json_actor(actor, path):
         return "Failed to save actor to: %s\n%s" % (path, traceback.format_exc())
 
 
-def save_yaml_actor(actor, path):
+def save_yaml_actor(actor: Actor, path: str) -> Optional[str]:
     """
     Saves the actor to the given YAML file.
 
@@ -359,7 +360,7 @@ def save_yaml_actor(actor, path):
         return "Failed to save actor to: %s\n%s" % (path, traceback.format_exc())
 
 
-def save_pickle_actor(actor, path):
+def save_pickle_actor(actor: Actor, path: str) -> Optional[str]:
     """
     Saves the actor to the given pickle file.
 
@@ -380,7 +381,7 @@ def save_pickle_actor(actor, path):
         return "Failed to save actor to: %s\n%s" % (path, traceback.format_exc())
 
 
-def save_actor(actor, path):
+def save_actor(actor: Actor, path: str) -> Optional[str]:
     """
     Saves the actor to the given file.
 
@@ -399,7 +400,7 @@ def save_actor(actor, path):
         return None
 
 
-def actor_to_json(actor):
+def actor_to_json(actor: Actor) -> str:
     """
     Turns the actor into JSON representation.
 
@@ -412,7 +413,7 @@ def actor_to_json(actor):
     return json.dumps(d, indent=2)
 
 
-def json_to_actor(s):
+def json_to_actor(s: str) -> Optional[Actor]:
     """
     Parses the JSON string and returns the actor.
 
